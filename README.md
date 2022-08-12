@@ -1,47 +1,17 @@
-# SinGAN
+# CS523 Project: Recreation of SinGAN
 
-[Project](https://tamarott.github.io/SinGAN.htm) | [Arxiv](https://arxiv.org/pdf/1905.01164.pdf) | [CVF](http://openaccess.thecvf.com/content_ICCV_2019/papers/Shaham_SinGAN_Learning_a_Generative_Model_From_a_Single_Natural_Image_ICCV_2019_paper.pdf) | [Supplementary materials](https://openaccess.thecvf.com/content_ICCV_2019/supplemental/Shaham_SinGAN_Learning_a_ICCV_2019_supplemental.pdf) | [Talk (ICCV`19)](https://youtu.be/mdAcPe74tZI?t=3191) 
-### Official pytorch implementation of the paper: "SinGAN: Learning a Generative Model from a Single Natural Image"
-#### ICCV 2019 Best paper award (Marr prize)
-
-
-## Random samples from a *single* image
-With SinGAN, you can train a generative model from a single natural image, and then generate random samples from the given image, for example:
-
-![](imgs/teaser.PNG)
-
-
-## SinGAN's applications
-SinGAN can be also used for a line of image manipulation tasks, for example:
- ![](imgs/manipulation.PNG)
-This is done by injecting an image to the already trained model. See section 4 in our [paper](https://arxiv.org/pdf/1905.01164.pdf) for more details.
-
-
-### Citation
-If you use this code for your research, please cite our paper:
-
-```
-@inproceedings{rottshaham2019singan,
-  title={SinGAN: Learning a Generative Model from a Single Natural Image},
-  author={Rott Shaham, Tamar and Dekel, Tali and Michaeli, Tomer},
-  booktitle={Computer Vision (ICCV), IEEE International Conference on},
-  year={2019}
-}
-```
 
 ## Code
 
 ### Install dependencies
 
-```
-python -m pip install -r requirements.txt
-```
+To run the code on scc, load the following modules:
 
-This code was tested with python 3.6, torch 1.4
+cuda/10.1
 
-Please note: the code currently only supports torch 1.4 or earlier because of the optimization scheme.
+python3/3.6.9
 
-For later torch versions, you may try this repository: https://github.com/kligvasser/SinGAN (results won't necessarily be identical to the official implementation).
+pytorch/1.3
 
 
 ###  Train
@@ -133,16 +103,24 @@ python SIFID/sifid_score.py --path2real <real images path> --path2fake <fake ima
 ```  
 Make sure that each of the fake images file name is identical to its corresponding real image file name. Images should be saved in `.jpg` format.
 
-### Super Resolution Results
-SinGAN's SR results on the BSD100 dataset can be download from the 'Downloads' folder.
+## Our Addition
 
-### User Study
-The data used for the user study can be found in the Downloads folder. 
+### Number of Layers
+The model was trained with 4, 5 (default), and 6 layers with the following command. 
+```
+python main_train.py --num_layer <number of layers> --input_name <input file name> 
+``` 
+Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with 4 layers captured the distribution of the input images poorly.
 
-real folder: 50 real images, randomly picked from the [places database](http://places.csail.mit.edu/)
+The models with 5 layers were sufficient to capture the distribution of the original images. 
 
-fake_high_variance folder: random samples starting from n=N for each of the real images 
+The models with 6 layers produced random samples that were nearly identical to the original images with only minor differences.
 
-fake_mid_variance folder: random samples starting from n=N-1 for each of the real images 
+### Scale Factor
+The model was trained with scale factors of 0.25, 0.5, 0.75 (default), and 0.85 with the following command.
+```
+python main_train.py --scale_factor <scale factor> --input_name <input file name> 
+``` 
+Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with a scale factor of 0.25 captured finer details in the original images, but not their global structures.
 
-For additional details please see section 3.1 in our [paper](https://arxiv.org/pdf/1905.01164.pdf)
+As scale factor increases, the models were able to better capture the global structures of the input images.
