@@ -1,5 +1,24 @@
-
+# Before you read
+This is a student collaboration project which requirement is finding a topic and reproducing a related research paper.
+The research theory and related code are downloaded from https://github.com/tamarott/SinGAN
 # CS523 Project: Recreation of SinGAN
+
+## Background of single image training technique for GAN and related research
+Texture Expansion
+(Zhou, Y., Zhu, Z., Bai, X., Lischinski, D., Cohen-Or, D., & Huang, H. (2018). Non-Stationary Texture Synthesis by Adversarial Expansion. ArXiv:1805.04487 [Cs]. https://arxiv.org/abs/1805.04487)
+
+Training GAN with single image already come into play for a while. 
+In 2018, there’s a research about texture expansion. It relies on single texture image, and achieve high quality picture expansion by generating more texture to fill up the image. 
+
+InGAN-Internal GAN
+(Shocher, A., Bagon, S., Isola, P., & Irani, M. (n.d.). InGAN: Capturing and Retargeting the “DNA” of a Natural Image. Retrieved August 10, 2022, from https://openaccess.thecvf.com/content_ICCV_2019/papers/Shocher_InGAN_Capturing_and_Retargeting_the_DNA_of_a_Natural_Image_ICCV_2019_paper.pdf)
+By 2019, there’s another research which based on single natural image and achieve retargeting. Retargeting at here can be understand by two aspects, the first parts is expanding, the second part is shrinking. Both action should not tilt, scale or change the major target in the image. A good example you can see here, the input is a picture with three birds in it, and on the right hand side, when we we change the width of the image, instead of squiz the picture, the output from InGAN just put three birds moves closer to each other. 
+
+SinGAN
+(Shaham, T., Dekel, T., Research, G., & Michaeli, T. (n.d.). SinGAN: Learning a Generative Model from a Single Natural Image. Retrieved August 10, 2022, from https://openaccess.thecvf.com/content_ICCV_2019/papers/Shaham_SinGAN_Learning_a_Generative_Model_From_a_Single_Natural_Image_ICCV_2019_paper.pdf)
+At 2019 we have a better solution, SinGAN. Why it’s better? First SinGAN is unconditional veras InGAN is conditional. Secondly application wise, SinGAN can also achieve highper resolution, harmonization. We can also create animation from single image. 
+We show that the internal statistics of patches within a single natural image typically carry enough information for learning a powerful generative model. Once trained, SinGAN can produce diverse high quality image samples (of arbitrary dimensions), which semantically resemble the training image, yet contain new object configurations and structures. 
+
 ## Idea of SinGAN Reiteration
 The architecture of SinGAN is a pyramid of fully convolutional GANS, each capture the distribution of patches at a different scale of an image. When training a model, the image is downsampled at each scale. The generation of an image starts at the coarsest scale and passes through generators up to the finest scale, with noise injected at every scale. The receptive field of each generator and discriminator is the same, so smaller size of structure is captured as the generation process goes up. In many of our training examples, we try to generate image starting at different scales after training the original target images. At the coarsest scale, generated images have large variation with the original image; at finer scale, SinGAN only modifies details, like textures of the sky or stipes on the zebras. 
 
@@ -38,10 +57,13 @@ pytorch/1.3
 
 
 ###  Train
+
+You can trian all the image under Input/Image folder by running `Run.sh`
+
 To train SinGAN model on your own image, put the desired training image under Input/Images, and run
 
 ```
-python main_train.py --input_name <input_file_
+python main_train.py --input_name <input_file_name>
 
 
 ###  Random samples
