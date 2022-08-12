@@ -1,6 +1,4 @@
-# SinGAN
-
-### CS523 Project: Recreation of SinGAN"
+# CS523 Project: Recreation of SinGAN
 
 
 ## Code
@@ -8,9 +6,13 @@
 ### Install dependencies
 
 To run the code on scc, load the following modules:
+
 cuda/10.1
+
 python3/3.6.9
+
 pytorch/1.3
+
 
 ###  Train
 To train SinGAN model on your own image, put the desired training image under Input/Images, and run
@@ -101,16 +103,9 @@ python SIFID/sifid_score.py --path2real <real images path> --path2fake <fake ima
 ```  
 Make sure that each of the fake images file name is identical to its corresponding real image file name. Images should be saved in `.jpg` format.
 
-### Super Resolution Results
-SinGAN's SR results on the BSD100 dataset can be download from the 'Downloads' folder.
+## Our Addition
 
-### User Study
-The data used for the user study can be found in the Downloads folder. 
+### Number of Layers
+The model was trained with 4, 5 (default), and 6 layers.
 
-real folder: 50 real images, randomly picked from the [places database](http://places.csail.mit.edu/)
-
-fake_high_variance folder: random samples starting from n=N for each of the real images 
-
-fake_mid_variance folder: random samples starting from n=N-1 for each of the real images 
-
-For additional details please see section 3.1 in our [paper](https://arxiv.org/pdf/1905.01164.pdf)
+### Scale Factor
