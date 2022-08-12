@@ -1,48 +1,16 @@
 # SinGAN
 
-[Project](https://tamarott.github.io/SinGAN.htm) | [Arxiv](https://arxiv.org/pdf/1905.01164.pdf) | [CVF](http://openaccess.thecvf.com/content_ICCV_2019/papers/Shaham_SinGAN_Learning_a_Generative_Model_From_a_Single_Natural_Image_ICCV_2019_paper.pdf) | [Supplementary materials](https://openaccess.thecvf.com/content_ICCV_2019/supplemental/Shaham_SinGAN_Learning_a_ICCV_2019_supplemental.pdf) | [Talk (ICCV`19)](https://youtu.be/mdAcPe74tZI?t=3191) 
-### Official pytorch implementation of the paper: "SinGAN: Learning a Generative Model from a Single Natural Image"
-#### ICCV 2019 Best paper award (Marr prize)
+### CS523 Project: Recreation of SinGAN"
 
-
-## Random samples from a *single* image
-With SinGAN, you can train a generative model from a single natural image, and then generate random samples from the given image, for example:
-
-![](imgs/teaser.PNG)
-
-
-## SinGAN's applications
-SinGAN can be also used for a line of image manipulation tasks, for example:
- ![](imgs/manipulation.PNG)
-This is done by injecting an image to the already trained model. See section 4 in our [paper](https://arxiv.org/pdf/1905.01164.pdf) for more details.
-
-
-### Citation
-If you use this code for your research, please cite our paper:
-
-```
-@inproceedings{rottshaham2019singan,
-  title={SinGAN: Learning a Generative Model from a Single Natural Image},
-  author={Rott Shaham, Tamar and Dekel, Tali and Michaeli, Tomer},
-  booktitle={Computer Vision (ICCV), IEEE International Conference on},
-  year={2019}
-}
-```
 
 ## Code
 
 ### Install dependencies
 
-```
-python -m pip install -r requirements.txt
-```
-
-This code was tested with python 3.6, torch 1.4
-
-Please note: the code currently only supports torch 1.4 or earlier because of the optimization scheme.
-
-For later torch versions, you may try this repository: https://github.com/kligvasser/SinGAN (results won't necessarily be identical to the official implementation).
-
+To run the code on scc, load the following modules:
+cuda/10.1
+python3/3.6.9
+pytorch/1.3
 
 ###  Train
 To train SinGAN model on your own image, put the desired training image under Input/Images, and run
