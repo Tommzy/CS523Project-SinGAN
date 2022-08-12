@@ -107,5 +107,12 @@ Make sure that each of the fake images file name is identical to its correspondi
 
 ### Number of Layers
 The model was trained with 4, 5 (default), and 6 layers.
+```
+python main_train.py --num_layer <number of layers> --input_name <input file name> 
+``` 
 
 ### Scale Factor
+The model was trained with scale factors of 0.25, 0.5, 0.75 (default), and 0.85.
+```
+python main_train.py --scale_factor <scale factor> --input_name <input file name> 
+``` 
