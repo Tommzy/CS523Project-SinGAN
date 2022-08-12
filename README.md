@@ -40,7 +40,7 @@ pytorch/1.3
 ###  Train
 
 ```
-python main_train.py --input_name <input_file_
+python main_train.py --input_name <input_file_>
 
 
 ###  Random samples
