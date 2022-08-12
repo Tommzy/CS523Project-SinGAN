@@ -64,7 +64,7 @@ To train SinGAN model on your own image, put the desired training image under In
 
 ```
 python main_train.py --input_name <input_file_name>
-
+```
 
 ###  Random samples
 To generate random samples from any starting generation scale, please first train SinGAN model on the desired image (as described above), then run 
