@@ -89,6 +89,10 @@ To train the model, use the following command and replace <input_file_name> with
 ```
 python main_train.py --input_name <input_file_name>
 ```
+For example:
+```
+python main_train.py --input_name zebra.png
+```
 
 ###  Random samples
 
