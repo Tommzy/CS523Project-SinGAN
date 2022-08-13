@@ -1,6 +1,7 @@
 # Before you read
 This is a student collaboration project which requirement is finding a topic and reproducing a related research paper.
 The research theory and related code are downloaded from https://github.com/tamarott/SinGAN
+The code executing instructions are copied from authors repo. We add a shell script to train all the input images with one commmand.
 # CS523 Project: Recreation of SinGAN
 
 ## Background of single image training technique for GAN and related research
@@ -57,9 +58,6 @@ pytorch/1.3
 
 
 ###  Train
-
-You can trian all the image under Input/Image folder by running `Run.sh`
-
 To train SinGAN model on your own image, put the desired training image under Input/Images, and run
 
 ```
@@ -116,7 +114,7 @@ Here as well, different injection scale will produce different editing effects. 
 
 ###  Paint to Image
 
-To transfer a paint into a realistic image (See example in Fig. 11 in [our paper](https://arxiv.org/pdf/1905.01164.pdf)), please first train SinGAN model on the desired image (as described above), then save your paint under "Input/Paint", and run the command
+To transfer a paint into a realistic image (See example in Fig. 11 in (https://arxiv.org/pdf/1905.01164.pdf)), please first train SinGAN model on the desired image (as described above), then save your paint under "Input/Paint", and run the command
 
 ```
 python paint2image.py --input_name <training_image_file_name> --ref_name <paint_image_file_name> --paint_start_scale <scale to inject>
@@ -144,7 +142,9 @@ python SIFID/sifid_score.py --path2real <real images path> --path2fake <fake ima
 ```  
 Make sure that each of the fake images file name is identical to its corresponding real image file name. Images should be saved in `.jpg` format.
 
-## Our Addition
+## Our Addition and findings
+### Train all the image
+You can trian all the image under Input/Image directory by running `Run.sh`
 
 ### Number of Layers
 The model was trained with 4, 5 (default), and 6 layers with the following command. 
@@ -165,3 +165,5 @@ python main_train.py --scale_factor <scale factor> --input_name <input file name
 Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with a scale factor of 0.25 captured finer details in the original images, but not their global structures.
 
 As scale factor increases, the models were able to better capture the global structures of the input images.
+
+###
