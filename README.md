@@ -1,5 +1,7 @@
 
 # CS523 Project: Recreation of SinGAN
+
+Team members: Chun Cheng, Kaiyan Xu, Hui Zheng
 ## Idea of SinGAN Reiteration
 The architecture of SinGAN is a pyramid of fully convolutional GANS, each capture the distribution of patches at a different scale of an image. When training a model, the image is downsampled at each scale. The generation of an image starts at the coarsest scale and passes through generators up to the finest scale, with noise injected at every scale. The receptive field of each generator and discriminator is the same, so smaller size of structure is captured as the generation process goes up. In many of our training examples, we try to generate image starting at different scales after training the original target images. At the coarsest scale, generated images have large variation with the original image; at finer scale, SinGAN only modifies details, like textures of the sky or stipes on the zebras. 
 
@@ -19,9 +21,28 @@ Therefore, in our following analysis, we would emphasize the difference of param
 
 ### Changed parameter2
 
-### Changed parameter3
+### Number of Layers
 
-### Changed parameter4
+The model was trained with 4, 5 (default), and 6 layers with the following command. 
+```
+python main_train.py --num_layer <number of layers> --input_name <input file name> 
+``` 
+Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with 4 layers captured the distribution of the input images poorly.
+
+The models with 5 layers were sufficient to capture the distribution of the original images. 
+
+The models with 6 layers produced random samples that were nearly identical to the original images with only minor differences.
+
+### Scale Factor
+
+The model was trained with scale factors of 0.25, 0.5, 0.75 (default), and 0.85 with the following command.
+```
+python main_train.py --scale_factor <scale factor> --input_name <input file name> 
+``` 
+Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with a scale factor of 0.25 captured finer details in the original images, but not their global structures.
+
+As scale factor increases, the models were able to better capture the global structures of the input images.
+
 
 ## Code Instruction
 
@@ -48,14 +69,14 @@ python main_train.py --input_name <input_file_name>
 
 The following command generates 50 random samples of <training_image_file_name> starting from <generation_start_scale_number>. 
 
-(This command can only be used after training <training_image_file_name> using the command above. <generation_start_scale_number> can be any integer between 0 to N, where N is last scale trained during training.)
+(This command can only be used after training <training_image_file_name> using the command above. <generation_start_scale_number> can be any integer between 0 to N, where N is the last scale trained during training.)
 ```
 python random_samples.py --input_name <training_image_file_name> --mode random_samples --gen_start_scale <generation_start_scale_number>
 ```
 
 ###  Random samples of arbitrary sizes
 
-The following command performs in the same way as the command above, except it allows specification of output size.
+The following command performs in the same way as the command above, except that it allows specification of output size.
 ```
 python random_samples.py --input_name <training_image_file_name> --mode random_samples_arbitrary_sizes --scale_h <horizontal scaling factor> --scale_v <vertical scaling factor>
 ```
@@ -71,9 +92,9 @@ python animation.py --input_name <input_file_name>
 
 ###  Harmonization
 
-The following harmonizes an object <naively_pasted_reference_image_file_name> in to the background image <training_image_file_name>.
+The following harmonizes an object <naively_pasted_reference_image_file_name> into the background image <training_image_file_name>.
 
-(Before calling this command, must train the model using <training_image_file_name> first. <naively_pasted_reference_image_file_name> should be located under "Input/Harmonization.")
+(Before calling this command, we must train the model using <training_image_file_name> first. <naively_pasted_reference_image_file_name> should be located under "Input/Harmonization." <scale to inject> can be any integer between 0 to N, where N is the last scale trained during training.)
 ```
 python harmonization.py --input_name <training_image_file_name> --ref_name <naively_pasted_reference_image_file_name> --harmonization_start_scale <scale to inject>
 
@@ -83,7 +104,7 @@ python harmonization.py --input_name <training_image_file_name> --ref_name <naiv
 
 The following modifies an edited image <edited_image_file_name>.
 
-(Before calling this command, must train the model using the unedited image <training_image_file_name> first. <edited_image_file_name> should be located under "Input/Editing.")
+(Before calling this command, we must train the model using the unedited image <training_image_file_name> first. <edited_image_file_name> should be located under "Input/Editing." <scale to inject> can be any integer between 0 to N, where N is the last scale trained during training.)
 ```
 python editing.py --input_name <training_image_file_name> --ref_name <edited_image_file_name> --editing_start_scale <scale to inject>
 
@@ -93,7 +114,7 @@ python editing.py --input_name <training_image_file_name> --ref_name <edited_ima
 
 The following turns a paint <paint_image_file_name> into a realistic image based on <training_image_file_name>.
 
-(Before calling this command, must train the model using a realistic image <training_image_file_name> first. <paint_image_file_name> should be located under "Input/Paint.")
+(Before calling this command, we must train the model using a realistic image <training_image_file_name> first. <paint_image_file_name> should be located under "Input/Paint." <scale to inject> can be any integer between 0 to N, where N is the last scale trained during training.)
 ```
 python paint2image.py --input_name <training_image_file_name> --ref_name <paint_image_file_name> --paint_start_scale <scale to inject>
 
@@ -107,27 +128,5 @@ The following turns a low resolution image <LR_image_file_name> into high resolu
 ```
 python SR.py --input_name <LR_image_file_name>
 ```
-
-## Our Addition
-
-### Number of Layers
-
-The model was trained with 4, 5 (default), and 6 layers with the following command. 
-```
-python main_train.py --num_layer <number of layers> --input_name <input file name> 
-``` 
-Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with 4 layers captured the distribution of the input images poorly.
-
-The models with 5 layers were sufficient to capture the distribution of the original images. 
-
-The models with 6 layers produced random samples that were nearly identical to the original images with only minor differences.
-
-### Scale Factor
-
-The model was trained with scale factors of 0.25, 0.5, 0.75 (default), and 0.85 with the following command.
-```
-python main_train.py --scale_factor <scale factor> --input_name <input file name> 
-``` 
-Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with a scale factor of 0.25 captured finer details in the original images, but not their global structures.
-
-As scale factor increases, the models were able to better capture the global structures of the input images.
+###Output
+All the outputs from the commands above are located in "Output" folder.
