@@ -93,7 +93,8 @@ For example:
 ```
 python main_train.py --input_name zebra.png
 ```
-
+### Train all the image
+You can trian all the image under Input/Image directory by running `Run.sh`
 ###  Random samples
 
 The following command generates 50 random samples of <training_image_file_name> starting from <generation_start_scale_number>. 
