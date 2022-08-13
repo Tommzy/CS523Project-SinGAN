@@ -161,5 +161,9 @@ python SR.py --input_name <LR_image_file_name>
 All the outputs from the commands above are located in "Output" folder.
   
 ## Slides
+[Project_Presentation.pptx](Project_Presentation.pptx)
   
 ## Reference
+`Zhou, Y., Zhu, Z., Bai, X., Lischinski, D., Cohen-Or, D., & Huang, H. (2018). Non-Stationary Texture Synthesis by Adversarial Expansion. ArXiv:1805.04487 [Cs]. https://arxiv.org/abs/1805.04487`
+`Shocher, A., Bagon, S., Isola, P., & Irani, M. (n.d.). InGAN: Capturing and Retargeting the “DNA” of a Natural Image. Retrieved August 10, 2022, from https://openaccess.thecvf.com/content_ICCV_2019/papers/Shocher_InGAN_Capturing_and_Retargeting_the_DNA_of_a_Natural_Image_ICCV_2019_paper.pdf`
+`Shaham, T., Dekel, T., Research, G., & Michaeli, T. (n.d.). SinGAN: Learning a Generative Model from a Single Natural Image. Retrieved August 10, 2022, from https://openaccess.thecvf.com/content_ICCV_2019/papers/Shaham_SinGAN_Learning_a_Generative_Model_From_a_Single_Natural_Image_ICCV_2019_paper.pdf`
