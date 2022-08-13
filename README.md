@@ -98,6 +98,8 @@ python main_train.py --input_name zebra.png
 ### Train all the image
 You can trian all the image under Input/Image directory by running `Run.sh`
 
+### There are some existing trained models under the TrainedModels directory, but we did not upload all the models to the repo due to the size.
+
 ###  Random samples
 
 The following command generates 50 random samples of <training_image_file_name> starting from <generation_start_scale_number>. 
