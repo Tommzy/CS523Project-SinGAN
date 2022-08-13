@@ -40,26 +40,31 @@ The model was trained with scale factors of 0.25, 0.5, 0.75 (default), and 0.85 
 ```
 python main_train.py --scale_factor <scale factor> --input_name <input file name> 
 ``` 
-Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with a scale factor of 0.25 captured finer details in the original images, but not their global structures.
-
-As scale factor increases, the models were able to better capture the global structures of the input images.
+Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with a scale factor of 0.25 captured finer details in the original images, but not their global structures. As scale factor increases, the models were able to better capture the global structures of the input images.
 
 
-### Changed parameter2
+### Changed parameter2 - Reconstruction Loss weight
+The model was trained with weight 5, 10 (default), and 20 with the following command. 
+```
+python main_train.py –-alpha <weight> --input_name <input_file_name>
+```
+Reconstruction loss ensures a specific set of noise maps as input. It also determines the standard deviation in each scale. It gives an indication of the number of details needed to add in that scale. 
 
 ### Changed parameter3 - Number of Layers
 The model was trained with 4, 5 (default), and 6 layers with the following command. 
 ```
 python main_train.py --num_layer <number of layers> --input_name <input file name> 
 ``` 
-Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with 4 layers captured the distribution of the input images poorly.
-
-The models with 5 layers were sufficient to capture the distribution of the original images. 
-
-The models with 6 layers produced random samples that were nearly identical to the original images with only minor differences.
+Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with 4 layers captured the distribution of the input images poorly. The models with 5 layers were sufficient to capture the distribution of the original images. The models with 6 layers produced random samples that were nearly identical to the original images with only minor differences.
 
 
-### Changed parameter4
+### Changed parameter4 - Number of Epoches to Train Per Scale
+The images were trained with 1200, 1600, and 2000 epoches with the following command.
+```
+python main_train.py –-niter <number of epoches> --input_name <input file name>
+```
+Fewer number of epoches to train lowers time with estimable amount: changing from 2000 to 1200 saves 2/5 amount of time. At small number of epoches like 1200, the image is coarser than 1600 and 2000. At generation scale 0, for Starry Night, there is more variation on the sky with global structure unchanged, so we think 1200 is a good number of epoches that saves time for art work. However, for zebra, both 1200 and 1600 epoches lead to more problem than 2000 epoches. Besides producing more than 4 legs which is a common problem for 2000 epoches, the body of the zebra is often fractured; even at scale 1, there are green color on zebra’s body at 1200 and 1600 epoches, which is very fake. Therefore, we think for real-life image, it is better to keep epoches at 2000.
+
 
 ## Code Instruction
 ## Code
