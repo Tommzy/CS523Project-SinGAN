@@ -164,24 +164,4 @@ Make sure that each of the fake images file name is identical to its correspondi
 ### Train all the image
 You can trian all the image under Input/Image directory by running `Run.sh`
 
-### Number of Layers
-The model was trained with 4, 5 (default), and 6 layers with the following command. 
-```
-python main_train.py --num_layer <number of layers> --input_name <input file name> 
-``` 
-Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with 4 layers captured the distribution of the input images poorly.
-
-The models with 5 layers were sufficient to capture the distribution of the original images. 
-
-The models with 6 layers produced random samples that were nearly identical to the original images with only minor differences.
-
-### Scale Factor
-The model was trained with scale factors of 0.25, 0.5, 0.75 (default), and 0.85 with the following command.
-```
-python main_train.py --scale_factor <scale factor> --input_name <input file name> 
-``` 
-Two images, zebra.png and starry_night.png, were tested. In both cases, the models trained with a scale factor of 0.25 captured finer details in the original images, but not their global structures.
-
-As scale factor increases, the models were able to better capture the global structures of the input images.
-
 ###
