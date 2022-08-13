@@ -84,7 +84,7 @@ python3/3.6.9
 pytorch/1.3
 
 
-###  Train
+###  Train (Each image takes roughly 40-55 min to train using 2 SCC GPUs)
 
 All the images used for training are located under "Input/Images."
 To train the model, use the following command and replace <input_file_name> with the name of a file under "Input/Images."
