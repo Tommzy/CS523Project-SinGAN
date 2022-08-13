@@ -95,6 +95,8 @@ For example:
 ```
 python main_train.py --input_name zebra.png
 ```
+### Train all the image
+You can trian all the image under Input/Image directory by running `Run.sh`
 
 ###  Random samples
 
